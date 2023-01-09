@@ -45,9 +45,10 @@ namespace AzureBatchRenderingCompletionSupervisor
             {
                 foreach (var job in batchClient.JobOperations.ListJobs())
                 {
-                    var (callbackUrl, renderJobId, renderURL) = extractMetadataFromJob(job);
+                    var (callbackUrl, renderJobId, renderURL,env) = extractMetadataFromJob(job);
 
-                    if (currentEnvironment)
+                    // only handle if it is related to our env
+                    if (currentEnvironment.Equals(env))
                     {
 
                     }
